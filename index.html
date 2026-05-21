@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Basic SEO -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumini Dashboard | Personalized Learning Platform</title>
+  <meta name="description" content="Lumini is a personalized learning platform helping students master mathematics through adaptive lessons, quizzes, and challenges." />
+  <meta name="keywords" content="Lumini, online learning, math dashboard, JAMB preparation, personalized learning" />
+  <meta name="author" content="Lumini Learning" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Lumini Dashboard" />
+  <meta property="og:description" content="Track progress, practice daily, and master mathematics with Lumini." />
+  <meta property="og:type" content="website" />
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="home.css" />
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h1 class="logo">Lumini</h1>
+
+      <nav aria-label="Main navigation">
+        <ul>
+          <li class="active">Dashboard</li>
+          <li>Lessons</li>
+          <a href = "practice.html"><li>Practice</li></a>
+          <li>Challenges</li>
+          <li>Streak</li>
+        </ul>
+      </nav>
+
+      <div class="profile">
+        <img src="https://i.pravatar.cc/100" alt="User profile photo">
+        <p class="name">Aisha M</p>
+        <small>7-Day Streak 🔥</small>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main">
+
+      <!-- Welcome Banner -->
+      <section class="welcome">
+        <div>
+          <h2>Welcome back, Aisha!</h2>
+          <p>Your personalized learning path awaits.</p>
+          <button class="primary-btn"><a href="/login.html">Start My Personalized Path</a></button>
+        </div>
+        <span class="focus">Focusing on: JAMB 2025</span>
+      </section>
+
+      <!-- Recommended Lessons -->
+      <section class="card">
+        <h3>Recommended Lessons</h3>
+
+        <div class="lessons">
+          <article class="lesson">
+            <h4>Algebra</h4>
+            <p>Linear Equations</p>
+            <progress value="70" max="100"></progress>
+          </article>
+
+          <article class="lesson">
+            <h4>Geometry</h4>
+            <p>Introduction to Circles</p>
+            <progress value="50" max="100"></progress>
+          </article>
+
+          <article class="lesson">
+            <h4>Calculus</h4>
+            <p>Differentiation</p>
+            <progress value="30" max="100"></progress>
+          </article>
+        </div>
+      </section>
+
+      <!-- Bottom Grid -->
+      <section class="grid">
+
+        <div class="card">
+          <h3>Weekly Progress</h3>
+          <canvas id="progressChart" aria-label="Weekly progress chart"></canvas>
+        </div>
+
+        <div class="card">
+          <h3>Daily Practice</h3>
+          <p>25 / 30 questions answered today</p>
+          <button class="secondary-btn">Start a Quick Quiz</button>
+        </div>
+
+        <div class="card highlight">
+          <h3>Upcoming Events</h3>
+          <p>🏆 Math Olympiad – Global Challenge</p>
+          <button class="secondary-btn">Join Now</button>
+        </div>
+
+      </section>
+
+    </main>
+  </div>
+
+  <script src="home.js"></script>
+</body>
+</html>

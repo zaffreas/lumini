@@ -1,0 +1,144 @@
+:root {
+  --primary: #0544b1;
+  --primary-dark: #3b74d7;
+  --text-dark: #1f2937;
+  --text-light: #6b7280;
+  --border: #e5e7eb;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+body {
+  min-height: 100vh;
+ background: linear-gradient(135deg, #073366, #4f8ef7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container { 
+  padding: 20px;  
+}
+
+.wrapper {
+  background: var(--bg-gradient);
+  padding: 50px 20px;
+  border-radius: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  background: #fff;
+  width: 100%;
+  max-width: 380px;
+  padding: 32px 28px;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.logo {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 16px;
+}
+
+h1 {
+  font-size: 22px;
+  color: var(--text-dark);
+}
+
+.subtitle {
+  font-size: 14px;
+  color: var(--text-light);
+  margin-bottom: 24px;
+}
+
+form {
+  text-align: left;
+}
+
+label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-dark);
+  margin-bottom: 6px;
+  display: block;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  margin-bottom: 16px;
+  font-size: 14px;
+}
+
+input:focus {
+  border-color: var(--primary);
+  outline: none;
+}
+
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  font-size: 13px;
+}
+
+.remember {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.options a {
+  color: var(--primary);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 999px;
+  border: none;
+  background: var(--primary);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background: var(--primary-dark);
+}
+
+.signup {
+  margin-top: 20px;
+  font-size: 14px;
+  text-align: center;
+  color: var(--text-light);
+}
+
+.signup a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+@media (max-width: 500px) {
+  .card {
+    padding: 26px 20px;
+  }
+}

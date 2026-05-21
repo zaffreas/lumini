@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Practice Session Setup | Online Exam Preparation</title>
+
+  <!-- SEO Meta -->
+  <meta name="description" content="Set up your practice session by selecting past questions, difficulty level, time, and topics. Prepare smarter for your exams." />
+  <meta name="keywords" content="practice questions, exam preparation, CBT practice, mathematics practice, online test" />
+  <meta name="author" content="Lumini Learning" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Practice Session Setup" />
+  <meta property="og:description" content="Customize your exam practice session with difficulty, topics, and time." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="practice.css" />
+</head>
+<body>
+
+<main class="container">
+  <header class="page-header">
+    <h1>Practice Session Setup</h1>
+  </header>
+
+  <form class="practice-form" id="practiceForm">
+
+    <!-- Past Question -->
+    <!-- Exam Type & Past Question (Same Line) -->
+<section class="card grid-2">
+ 
+  <!-- Exam Type -->
+  <div>
+    <label for="examType">Select Exam Type</label>
+    <select id="examType" name="examType" required>
+      <option value="">Choose exam</option>
+      <option value="JAMB">JAMB</option>
+      <option value="WAEC">WAEC</option>
+      <option value="NECO">NECO</option>
+      <option value="SAT">SAT</option>
+    </select>
+  </div>
+
+  <!-- Past Question Year -->
+  <div>
+    <label for="pastQuestionYear">Select Past Question (Year)</label>
+    <input
+      list="yearOptions"
+      id="pastQuestionYear"
+      name="pastQuestionYear"
+      placeholder="Search year e.g. 2018"
+      required
+    />
+    <datalist id="yearOptions">
+      <!-- JS will populate years -->
+    </datalist>
+  </div>
+
+</section>
+
+    <!-- Customize -->
+    <section class="card highlight">
+      <div class="customize">
+        <span class="icon">⚙️</span>
+        <div>
+          <h3>Customize Practice Questions</h3>
+          <p>Create a custom mix from all papers.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Difficulty -->
+    <section class="card">
+      <h3>Select Difficulty Level</h3>
+      <div class="button-group">
+        <button type="button" data-difficulty="Easy">Easy</button>
+        <button type="button" data-difficulty="Medium">Medium</button>
+        <button type="button" data-difficulty="Hard">Hard</button>
+      </div>
+      <input type="hidden" name="difficulty" id="difficulty">
+    </section>
+
+    <!-- Time -->
+    <section class="card">
+      <h3>Select Time</h3>
+      <div class="button-group">
+        <button type="button" data-time="15">15 min</button>
+        <button type="button" data-time="30">30 min</button>
+        <button type="button" data-time="60">60 min</button>
+      </div>
+      <input type="hidden" name="time" id="time">
+    </section>
+
+    <!-- Topics -->
+    <section class="card topics">
+      <h3>Select Topics</h3>
+
+      <label><input type="checkbox" id="selectAll"> Select All</label>
+
+      <div class="topics-grid">
+        <label><input type="checkbox" value="Algebra"> Algebra</label>
+        <label><input type="checkbox" value="Calculus"> Calculus</label>
+        <label><input type="checkbox" value="Geometry"> Geometry</label>
+        <label><input type="checkbox" value="Trigonometry"> Trigonometry</label>
+        <label><input type="checkbox" value="Statistics"> Statistics</label>
+        <label><input type="checkbox" value="Mechanics"> Mechanics</label>
+        <label><input type="checkbox" value="Analysis"> Analysis</label>
+      </div>
+    </section>
+
+    <!-- Submit -->
+    <div class="submit-area">
+      <button type="submit" class="start-btn">Start Practice Session</button>
+    </div>
+
+  </form>
+</main>
+
+<script src="practice.js"></script>
+</body>
+</html>

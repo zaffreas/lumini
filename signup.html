@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- SEO META -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account | Lumini Learning Platform</title>
+  <meta name="description" content="Create your Lumini account and start your learning journey today." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://yourdomain.com/register" />
+
+  <!-- OPEN GRAPH -->
+  <meta property="og:title" content="Create Your Lumini Account" />
+  <meta property="og:description" content="Sign up on Lumini and begin learning today." />
+  <meta property="og:type" content="website" />
+
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="signup.css">
+</head>
+
+<body>
+  <main class="container">
+    <section class="wrapper">
+      <article class="card">
+
+        <div class="logo">📘 Lumini</div>
+
+        <h1>Create Your Account</h1>
+        <p class="subtitle">Start your learning journey today!</p>
+
+        <form id="signupForm" aria-label="Create account form">
+
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Choose a username"
+            required
+          />
+
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Create a password"
+            required
+          />
+
+          <label for="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            placeholder="Re-enter your password"
+            required
+          />
+
+          <button type="submit">Sign Up</button>
+        </form>
+
+        <p class="signin">
+          Already have an account?
+          <a href="/login">Log In</a>
+        </p>
+
+      </article>
+    </section>
+  </main>
+
+  <!-- JS -->
+  <script src="signup.js"></script>
+</body>
+</html>

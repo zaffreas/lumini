@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- SEO META -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lumini Login | Continue Your Learning Journey</title>
+  <meta name="description" content="Log in to Lumini to continue your learning journey and access your dashboard." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://yourdomain.com/login" />
+
+  <!-- GOOGLE FONT -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="login.css" />
+</head>
+
+<body>
+  <main class="container">
+    <section class="wrapper">
+      <article class="card">
+
+        <div class="logo">📘 Lumini</div>
+
+        <h1>Welcome Back!</h1>
+        <p class="subtitle">Log in to continue your learning journey.</p>
+
+        <form id="loginForm" aria-label="Login Form">
+
+          <label for="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Enter your username"
+            required
+          />
+
+          <label for="password">Password</label>
+          <div class ="password-wrapper">
+            <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="••••••••"
+            required
+          />
+            
+          <div class="options">
+            <label class="remember">
+              <input type="checkbox" />
+              <span>Remember me</span>
+            </label>
+
+            <a href="/forgot-password">Forgot password?</a>
+          </div>
+
+          <button type="submit">Log In</button>
+        </form>
+
+        <p class="signup">
+          Don’t have an account?
+          <a href="/signup.html">Create Account</a>
+        </p>
+
+      </article>
+    </section>
+  </main>
+
+  <!-- JS -->
+  <script src="script.js"></script>
+</body>
+</html>

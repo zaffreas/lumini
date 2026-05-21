@@ -1,0 +1,125 @@
+:root {
+  --primary: #2f6fd6;
+  --border: #ddd;
+  --bg: #f9fafc;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  margin: 0;
+  background: linear-gradient(135deg,#092375ab, #4f8ef7);
+}
+
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+
+.page-header h1 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.practice-form {
+  display: grid;
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.card label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+.highlight {
+  border: 2px solid var(--primary);
+  background: #f0f6ff;
+}
+
+.customize {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.icon {
+  font-size: 28px;
+}
+
+.button-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.button-group button {
+  flex: 1;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: #f4f4f4;
+  cursor: pointer;
+}
+
+.button-group button.active {
+  background: var(--primary);
+  color: white;
+}
+
+.topics-grid {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 8px;
+}
+
+.submit-area {
+  text-align: center;
+}
+
+.start-btn {
+  background: var(--primary);
+  color: white;
+  padding: 14px 30px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.start-btn:hover {
+  opacity: 0.9;
+}
+/* Two-column layout */
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+
+/* Input search style */
+input[list] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}

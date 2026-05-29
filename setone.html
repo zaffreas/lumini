@@ -1,0 +1,1276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lumini – JAMB Mathematics · Set 1</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --blue:       #1A6BF5;
+  --blue-dark:  #1252C8;
+  --blue-mid:   #2563EB;
+  --blue-light: #EEF4FF;
+  --blue-pale:  #F5F8FF;
+  --green:      #16A34A;
+  --green-bg:   #F0FDF4;
+  --green-bd:   #86EFAC;
+  --purple:     #7C3AED;
+  --purple-bg:  #F5F3FF;
+  --orange:     #D97706;
+  --orange-bg:  #FFFBEB;
+  --orange-bd:  #FDE68A;
+  --red:        #DC2626;
+  --red-bg:     #FEF2F2;
+  --sidebar-w:  224px;
+  --topbar-h:   62px;
+  --white:      #FFFFFF;
+  --bg:         #F4F7FE;
+  --text:       #0F172A;
+  --text-2:     #334155;
+  --muted:      #64748B;
+  --border:     #E2E8F0;
+  --radius-sm:  8px;
+  --radius:     14px;
+  --radius-lg:  18px;
+  --shadow-sm:  0 1px 4px rgba(15,23,42,.06);
+  --shadow:     0 2px 12px rgba(26,107,245,.09);
+  --shadow-md:  0 4px 20px rgba(26,107,245,.13);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  display: flex;
+  min-height: 100vh;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ═══ SIDEBAR ═══ */
+.sidebar {
+  width: var(--sidebar-w);
+  min-height: 100vh;
+  background: var(--white);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0; left: 0; bottom: 0;
+  z-index: 20;
+}
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 22px 20px 20px;
+  border-bottom: 1px solid var(--border);
+}
+.logo-mark {
+  width: 34px; height: 34px;
+  border-radius: 10px;
+  background: var(--blue);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 800; font-size: 17px;
+  letter-spacing: -1px;
+  box-shadow: 0 4px 10px rgba(26,107,245,.35);
+}
+.logo-name {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.5px;
+}
+.sidebar-nav {
+  flex: 1;
+  padding: 12px 0;
+  overflow-y: auto;
+}
+.nav-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  padding: 12px 20px 6px;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 9px 20px;
+  margin: 1px 8px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--muted);
+  font-weight: 500;
+  font-size: 13.5px;
+  transition: all .16s ease;
+  position: relative;
+}
+.nav-item svg { flex-shrink: 0; width: 16px; height: 16px; }
+.nav-item:hover { color: var(--blue); background: var(--blue-light); }
+.nav-item.active {
+  color: var(--blue);
+  background: var(--blue-light);
+  font-weight: 700;
+}
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  left: -8px; top: 50%;
+  transform: translateY(-50%);
+  width: 3px; height: 20px;
+  background: var(--blue);
+  border-radius: 0 3px 3px 0;
+}
+.nav-badge {
+  margin-left: auto;
+  background: var(--blue);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 20px;
+}
+.sidebar-footer {
+  padding: 14px 16px;
+  border-top: 1px solid var(--border);
+}
+.user-card {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  background: var(--blue-pale);
+  cursor: pointer;
+  transition: background .16s;
+}
+.user-card:hover { background: var(--blue-light); }
+.user-avatar {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1a46a3, #7C3AED);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-weight: 800; font-size: 13px;
+  flex-shrink: 0;
+}
+.user-name { font-weight: 700; font-size: 12.5px; color: var(--text); }
+.user-role { font-size: 11px; color: var(--muted); }
+.user-streak {
+  margin-left: auto;
+  display: flex; flex-direction: column; align-items: center;
+}
+.streak-val { font-weight: 800; color: var(--orange); font-size: 13px; }
+.streak-lbl { font-size: 9px; color: var(--muted); font-weight: 600; }
+
+/* ═══ MAIN ═══ */
+.main {
+  margin-left: var(--sidebar-w);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* ═══ TOPBAR ═══ */
+.topbar {
+  height: var(--topbar-h);
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  position: sticky;
+  top: 0;
+  z-index: 15;
+  gap: 16px;
+}
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.breadcrumb-sep { color: var(--border); font-size: 16px; line-height: 1; }
+.breadcrumb-current { color: var(--text); font-weight: 700; }
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+.chip-blue   { background: var(--blue-light); color: var(--blue); }
+.chip-purple { background: var(--purple-bg);  color: var(--purple); }
+.chip-green  { background: var(--green-bg);   color: var(--green); }
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.timer-widget {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 16px;
+  border-radius: var(--radius);
+  background: var(--orange-bg);
+  border: 1.5px solid var(--orange-bd);
+}
+.timer-icon  { font-size: 18px; }
+.timer-inner { display: flex; flex-direction: column; }
+.timer-label { font-size: 10px; color: var(--muted); font-weight: 600; line-height: 1; }
+.timer-val   { font-size: 20px; font-weight: 800; color: #B45309; letter-spacing: 1px; font-variant-numeric: tabular-nums; line-height: 1.2; }
+.timer-widget.warn { background: var(--red-bg); border-color: #FECACA; }
+.timer-widget.warn .timer-val { color: var(--red); }
+.score-pill {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 16px;
+  border-radius: var(--radius);
+  background: var(--green-bg);
+  border: 1.5px solid var(--green-bd);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--green);
+  white-space: nowrap;
+}
+.score-pill span { font-size: 11px; color: var(--muted); font-weight: 500; }
+.btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-family: inherit; font-size: 13px; font-weight: 700;
+  cursor: pointer;
+  transition: all .18s;
+  white-space: nowrap;
+}
+.btn-primary { background: var(--blue); color: #fff; box-shadow: 0 2px 8px rgba(26,107,245,.3); }
+.btn-primary:hover { background: var(--blue-dark); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(26,107,245,.4); }
+.btn-ghost { background: transparent; color: var(--muted); border: 1.5px solid var(--border); }
+.btn-ghost:hover { background: var(--blue-pale); color: var(--blue); border-color: var(--blue); }
+.btn-danger { background: var(--red); color: #fff; box-shadow: 0 2px 8px rgba(220,38,38,.25); }
+.btn-danger:hover { background: #B91C1C; }
+
+/* ═══ CONTENT ═══ */
+.content-wrap {
+  flex: 1;
+  padding: 24px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* ═══ HERO BANNER ═══ */
+.hero-banner {
+  background: linear-gradient(120deg, var(--blue) 0%, #1a46a3 60%, #60A5FA 100%);
+  border-radius: var(--radius-lg);
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  position: relative;
+  overflow: hidden;
+}
+.hero-banner::before {
+  content: '';
+  position: absolute;
+  top: -30px; right: -30px;
+  width: 180px; height: 180px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  pointer-events: none;
+}
+.hero-banner::after {
+  content: '';
+  position: absolute;
+  bottom: -40px; right: 120px;
+  width: 120px; height: 120px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.05);
+  pointer-events: none;
+}
+.hero-text { position: relative; z-index: 1; }
+.hero-title { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+.hero-sub   { font-size: 13px; color: rgba(255,255,255,.8); }
+.hero-stats {
+  display: flex;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+.stat-pill {
+  background: rgba(255,255,255,.15);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: var(--radius);
+  padding: 10px 18px;
+  text-align: center;
+  min-width: 80px;
+}
+.stat-val { font-size: 22px; font-weight: 800; color: #fff; line-height: 1; }
+.stat-lbl { font-size: 10px; color: rgba(255,255,255,.75); font-weight: 600; margin-top: 3px; }
+.prog-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  position: relative;
+  z-index: 1;
+}
+.prog-bar {
+  width: 200px;
+  height: 7px;
+  background: rgba(255,255,255,.25);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.prog-fill {
+  height: 100%;
+  background: #fff;
+  border-radius: 999px;
+  transition: width .5s ease;
+}
+.prog-label { font-size: 12px; font-weight: 700; color: #fff; white-space: nowrap; }
+
+/* ═══ QUESTION NUMBER STRIP ═══ */
+.qnum-strip {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 14px 18px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.qnum-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.qnum-dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  flex: 1;
+}
+.qnum-dot {
+  width: 30px; height: 30px;
+  border-radius: 7px;
+  border: 1.5px solid var(--border);
+  background: var(--white);
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all .14s;
+  user-select: none;
+}
+.qnum-dot:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-light); }
+.qnum-dot.done  { background: var(--blue); color: #fff; border-color: var(--blue); }
+.qnum-dot.flagd { background: var(--orange-bg); color: var(--orange); border-color: #FCD34D; }
+
+/* ═══ QUESTIONS GRID ═══ */
+.questions-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+/* ═══ QUESTION CARD ═══ */
+.q-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+  box-shadow: var(--shadow-sm);
+  transition: border-color .18s, box-shadow .18s, transform .18s;
+  animation: slideUp .35s ease both;
+}
+.q-card:hover {
+  border-color: #BFDBFE;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+.q-card.answered { border-color: var(--green-bd); }
+.q-card.flagged  { border-color: #FCD34D; }
+.q-card.answered .q-num-bg { background: var(--green) !important; }
+.q-card.flagged:not(.answered)  .q-num-bg { background: var(--orange) !important; }
+
+.q-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+}
+.q-top-left { display: flex; align-items: center; gap: 10px; }
+.q-num-bg {
+  min-width: 30px; height: 30px;
+  border-radius: 9px;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 800; font-size: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: background .25s;
+}
+.q-tags  { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.q-tag-year  { font-size: 10px; font-weight: 700; color: var(--purple); background: var(--purple-bg); padding: 2px 9px; border-radius: 20px; }
+.q-tag-topic { font-size: 10px; font-weight: 600; color: var(--muted); background: #F1F5F9; padding: 2px 9px; border-radius: 20px; }
+
+.flag-btn {
+  background: none; border: none; cursor: pointer;
+  width: 28px; height: 28px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: #CBD5E1;
+  transition: all .15s;
+  flex-shrink: 0;
+}
+.flag-btn:hover { background: var(--orange-bg); color: var(--orange); }
+.flag-btn.on    { background: var(--orange-bg); color: var(--orange); }
+
+.q-text {
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.65;
+  color: var(--text-2);
+  border-left: 3px solid var(--blue-light);
+  padding-left: 12px;
+}
+
+.q-options { display: flex; flex-direction: column; gap: 7px; }
+.opt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 13px;
+  border-radius: 9px;
+  border: 1.5px solid var(--border);
+  cursor: pointer;
+  transition: all .15s;
+  background: var(--white);
+  user-select: none;
+}
+.opt:hover   { border-color: var(--blue); background: var(--blue-pale); }
+.opt.sel     { border-color: var(--blue); background: var(--blue-light); }
+.opt.correct { border-color: var(--green); background: var(--green-bg); pointer-events: none; }
+.opt.wrong   { border-color: var(--red);   background: var(--red-bg);   pointer-events: none; }
+
+.opt-badge {
+  width: 24px; height: 24px;
+  border-radius: 6px;
+  background: #F1F5F9;
+  color: var(--muted);
+  font-size: 11px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: all .15s;
+}
+.opt.sel     .opt-badge { background: var(--blue);  color: #fff; }
+.opt.correct .opt-badge { background: var(--green); color: #fff; }
+.opt.wrong   .opt-badge { background: var(--red);   color: #fff; }
+.opt-text { font-size: 13px; color: var(--text-2); line-height: 1.45; }
+
+/* ═══ BOTTOM BAR ═══ */
+.bottom-bar {
+  position: sticky;
+  bottom: 0;
+  background: rgba(255,255,255,.97);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--border);
+  padding: 12px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  z-index: 15;
+  box-shadow: 0 -2px 16px rgba(15,23,42,.07);
+}
+.bottom-left  { display: flex; align-items: center; gap: 10px; }
+.bottom-right { display: flex; align-items: center; gap: 10px; }
+.scroll-hint  { font-size: 12px; color: var(--muted); font-weight: 500; }
+.scroll-hint strong { color: var(--blue); }
+
+/* ═══ MODALS ═══ */
+.overlay {
+  position: fixed; inset: 0;
+  background: rgba(15,23,42,.5);
+  backdrop-filter: blur(4px);
+  z-index: 50;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity .25s;
+}
+.overlay.show { opacity: 1; pointer-events: all; }
+.modal {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 32px;
+  max-width: 440px; width: 90%;
+  box-shadow: 0 24px 60px rgba(15,23,42,.22);
+  transform: translateY(16px) scale(.97);
+  transition: transform .25s;
+}
+.overlay.show .modal { transform: translateY(0) scale(1); }
+.modal-title  { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+.modal-body   { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom: 24px; }
+.modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+
+.result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.res-card { background: var(--bg); border-radius: 12px; padding: 16px; text-align: center; }
+.res-val  { font-size: 28px; font-weight: 800; line-height: 1; }
+.res-lbl  { font-size: 11px; color: var(--muted); font-weight: 600; margin-top: 4px; }
+.res-card.blue   .res-val { color: var(--blue); }
+.res-card.green  .res-val { color: var(--green); }
+.res-card.orange .res-val { color: var(--orange); }
+.res-card.red    .res-val { color: var(--red); }
+
+/* Review mode */
+.q-card.reviewed .opt.correct { border-color: var(--green); background: var(--green-bg); }
+.q-card.reviewed .opt.wrong   { border-color: var(--red);   background: var(--red-bg); }
+.review-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  font-size: 11px; font-weight: 700;
+  padding: 3px 10px; border-radius: 20px; margin-top: 4px;
+}
+.review-badge.correct-b { background: var(--green-bg); color: var(--green); }
+.review-badge.wrong-b   { background: var(--red-bg);   color: var(--red); }
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ SIDEBAR ═══════════ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-mark">L</div>
+    <div class="logo-name">Lumini</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Main</div>
+    <div class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      Dashboard
+    </div>
+    <div class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      Lessons
+    </div>
+    <div class="nav-item active">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Practice Questions
+      <span class="nav-badge">40</span>
+    </div>
+    <div class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      Challenges
+    </div>
+    <div class="nav-section-label">Track</div>
+    <div class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Progress
+    </div>
+    <div class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Leaderboard
+    </div>
+    <div class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Schedule
+    </div>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <div class="user-avatar">AM</div>
+      <div>
+        <div class="user-name">Aisha M</div>
+        <div class="user-role">Member · Luminery</div>
+      </div>
+      <div class="user-streak">
+        <div class="streak-val">🔥7</div>
+        <div class="streak-lbl">Day Streak</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="breadcrumb">
+        <span>Practice</span>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">JAMB Mathematics — Set 1</span>
+      </div>
+      <span class="chip chip-blue">Mathematics</span>
+      <span class="chip chip-purple">2023 Syllabus</span>
+      <span class="chip chip-green">40 Questions</span>
+    </div>
+    <div class="topbar-right">
+      <div class="timer-widget" id="timerWidget">
+        <span class="timer-icon">⏱</span>
+        <div class="timer-inner">
+          <span class="timer-label">TIME LEFT</span>
+          <span class="timer-val" id="timerVal">30:00</span>
+        </div>
+      </div>
+      <div class="score-pill">
+        ✅ <strong id="scoreNum">0</strong>&nbsp;<span>/ 40 answered</span>
+      </div>
+      <button class="btn btn-ghost" id="pauseBtn">⏸ Pause</button>
+      <button class="btn btn-danger" onclick="openSubmit()">Submit Test</button>
+    </div>
+  </header>
+
+  <!-- SCROLLABLE CONTENT -->
+  <div class="content-wrap">
+
+    <!-- HERO BANNER -->
+    <div class="hero-banner">
+      <div class="hero-text">
+        <div class="hero-title">JAMB Mathematics — Set 1 · Past Questions Practice</div>
+        <div class="hero-sub">Scroll through all 40 questions at your own pace · Answers tracked automatically</div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-pill">
+          <div class="stat-val" id="statAnswered">0</div>
+          <div class="stat-lbl">Answered</div>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-val" id="statFlagged">0</div>
+          <div class="stat-lbl">Flagged</div>
+        </div>
+        <div class="stat-pill">
+          <div class="stat-val" id="statLeft">40</div>
+          <div class="stat-lbl">Remaining</div>
+        </div>
+      </div>
+      <div class="prog-wrap">
+        <div class="prog-bar">
+          <div class="prog-fill" id="progFill" style="width:0%"></div>
+        </div>
+        <span class="prog-label" id="progLabel">0%</span>
+      </div>
+    </div>
+
+    <!-- QUESTION NUMBER STRIP -->
+    <div class="qnum-strip">
+      <div class="qnum-label">Jump to Q:</div>
+      <div class="qnum-dots" id="qnumDots"></div>
+    </div>
+
+    <!-- QUESTIONS GRID — 2 columns -->
+    <div class="questions-grid" id="questionsGrid"></div>
+
+  </div><!-- /content-wrap -->
+
+  <!-- STICKY BOTTOM BAR -->
+  <div class="bottom-bar">
+    <div class="bottom-left">
+      <span class="scroll-hint">↕ Scroll to view all <strong>40 questions</strong> · All answers auto-saved</span>
+    </div>
+    <div class="bottom-right">
+      <div class="score-pill">✅ <strong id="scoreNum2">0</strong> <span>/ 40</span></div>
+      <button class="btn btn-primary" onclick="openSubmit()">Submit &amp; See Results</button>
+    </div>
+  </div>
+
+</div><!-- /main -->
+
+<!-- SUBMIT MODAL -->
+<div class="overlay" id="submitOverlay">
+  <div class="modal">
+    <div class="modal-title">⚠️ Ready to Submit?</div>
+    <div class="modal-body">
+      You've answered <strong id="modalAns">0</strong> of 40 questions.<br><br>
+      Unanswered questions will score zero. Are you sure you want to submit?
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeSubmit()">Keep Going</button>
+      <button class="btn btn-danger" onclick="showResults()">Submit Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS MODAL -->
+<div class="overlay" id="resultsOverlay">
+  <div class="modal">
+    <div class="modal-title">🎉 Test Complete!</div>
+    <div class="result-grid">
+      <div class="res-card green"><div class="res-val" id="resScore">0</div><div class="res-lbl">Score / 40</div></div>
+      <div class="res-card blue"><div class="res-val" id="resPct">0%</div><div class="res-lbl">Percentage</div></div>
+      <div class="res-card orange"><div class="res-val" id="resAns">0</div><div class="res-lbl">Answered</div></div>
+      <div class="res-card red"><div class="res-val" id="resSkip">0</div><div class="res-lbl">Skipped</div></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeResults()">Close</button>
+      <button class="btn btn-primary" onclick="reviewAnswers()">Review Answers</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+//  EXACT FIRST QUESTION SET — 40 Questions
+//  Scattered across topics exactly as JAMB does
+//  Topics: Number & Numeration, Algebra, Geometry &
+//          Trigonometry, Calculus, Statistics & Probability
+// ═══════════════════════════════════════════════════════════
+const QUESTIONS = [
+  {
+    n: 1, year: "JAMB 2021", topic: "Surds",
+    q: "Simplify: (√5 + √3)(√5 − √3)",
+    opts: ["A.  2", "B.  8", "C.  4", "D.  √15"],
+    ans: "A"
+  },
+  {
+    n: 2, year: "JAMB 2019", topic: "Coordinate Geometry",
+    q: "Find the gradient of the line 3y = 6x − 9.",
+    opts: ["A.  3", "B.  2", "C.  6", "D.  −3"],
+    ans: "B"
+  },
+  {
+    n: 3, year: "JAMB 2020", topic: "Percentages",
+    q: "A man earns ₦240,000 per year. He pays 10% as tax. What is his monthly take-home pay?",
+    opts: ["A.  ₦18,000", "B.  ₦20,000", "C.  ₦22,000", "D.  ₦24,000"],
+    ans: "A"
+  },
+  {
+    n: 4, year: "JAMB 2018", topic: "Inequalities",
+    q: "Solve: 3x − 2 > x + 4",
+    opts: ["A.  x > 1", "B.  x > 3", "C.  x < 3", "D.  x > 2"],
+    ans: "B"
+  },
+  {
+    n: 5, year: "JAMB 2022", topic: "Matrices",
+    q: "Find the determinant of the matrix [[5, 2], [3, 1]].",
+    opts: ["A.  −1", "B.  1", "C.  11", "D.  −11"],
+    ans: "A"
+  },
+  {
+    n: 6, year: "JAMB 2017", topic: "Number Bases",
+    q: "Convert 11011₂ to base 10.",
+    opts: ["A.  25", "B.  27", "C.  29", "D.  31"],
+    ans: "B"
+  },
+  {
+    n: 7, year: "JAMB 2016", topic: "Mensuration",
+    q: "A triangle has sides 3 cm, 4 cm, and 5 cm. Find its area.",
+    opts: ["A.  6 cm²", "B.  7.5 cm²", "C.  10 cm²", "D.  12 cm²"],
+    ans: "A"
+  },
+  {
+    n: 8, year: "JAMB 2021", topic: "Statistics",
+    q: "The mean of 6, 9, 11, 14, x is 10. Find x.",
+    opts: ["A.  8", "B.  9", "C.  10", "D.  11"],
+    ans: "C"
+  },
+  {
+    n: 9, year: "JAMB 2019", topic: "Logarithms",
+    q: "Evaluate log₃ 81 − log₃ 9.",
+    opts: ["A.  2", "B.  3", "C.  4", "D.  9"],
+    ans: "A"
+  },
+  {
+    n: 10, year: "JAMB 2018", topic: "Algebra",
+    q: "If f(x) = 3x² − 2x + 5, find f(−1).",
+    opts: ["A.  6", "B.  8", "C.  10", "D.  12"],
+    ans: "C"
+  },
+  {
+    n: 11, year: "JAMB 2020", topic: "Probability",
+    q: "A box contains 5 red and 3 blue balls. Two are drawn without replacement. Find the probability that both are red.",
+    opts: ["A.  5/14", "B.  25/64", "C.  5/16", "D.  15/56"],
+    ans: "A"
+  },
+  {
+    n: 12, year: "JAMB 2016", topic: "Progression",
+    q: "The 5th term of an AP is 17 and the 9th term is 33. Find the first term.",
+    opts: ["A.  1", "B.  2", "C.  3", "D.  5"],
+    ans: "A"
+  },
+  {
+    n: 13, year: "JAMB 2017", topic: "Mensuration",
+    q: "Find the area of a circle with diameter 14 cm. [π = 22/7]",
+    opts: ["A.  44 cm²", "B.  88 cm²", "C.  154 cm²", "D.  308 cm²"],
+    ans: "C"
+  },
+  {
+    n: 14, year: "JAMB 2021", topic: "Indices",
+    q: "Simplify: (2³ × 4²) ÷ 2⁵",
+    opts: ["A.  2", "B.  4", "C.  8", "D.  16"],
+    ans: "B"
+  },
+  {
+    n: 15, year: "JAMB 2023", topic: "Differentiation",
+    q: "Differentiate y = 4x³ − 6x + 2 with respect to x.",
+    opts: ["A.  12x² − 6", "B.  4x² − 6", "C.  12x³ − 6", "D.  12x² + 6"],
+    ans: "A"
+  },
+  {
+    n: 16, year: "JAMB 2018", topic: "Simultaneous Equations",
+    q: "Solve simultaneously: 2x + y = 8 and x − y = 1.",
+    opts: ["A.  x = 3, y = 2", "B.  x = 2, y = 4", "C.  x = 4, y = 3", "D.  x = 3, y = 3"],
+    ans: "A"
+  },
+  {
+    n: 17, year: "JAMB 2015", topic: "Sets",
+    q: "If P = {2, 3, 5, 7} and Q = {1, 2, 4, 7}, find P ∩ Q.",
+    opts: ["A.  {2, 7}", "B.  {2, 3, 7}", "C.  {1, 2, 7}", "D.  {7}"],
+    ans: "A"
+  },
+  {
+    n: 18, year: "JAMB 2019", topic: "Mensuration",
+    q: "A cone has radius 7 cm and height 24 cm. Find its slant height.",
+    opts: ["A.  25 cm", "B.  23 cm", "C.  26 cm", "D.  28 cm"],
+    ans: "A"
+  },
+  {
+    n: 19, year: "JAMB 2022", topic: "Integration",
+    q: "Evaluate: ∫₀² (3x² + 2) dx",
+    opts: ["A.  8", "B.  10", "C.  12", "D.  14"],
+    ans: "C"
+  },
+  {
+    n: 20, year: "JAMB 2020", topic: "Permutation",
+    q: "Find the number of ways of arranging 6 people in a line.",
+    opts: ["A.  36", "B.  120", "C.  720", "D.  5040"],
+    ans: "C"
+  },
+  {
+    n: 21, year: "JAMB 2016", topic: "Fractions",
+    q: "Simplify: (¾ ÷ 9/16) × ½",
+    opts: ["A.  2/3", "B.  1", "C.  4/3", "D.  3/2"],
+    ans: "A"
+  },
+  {
+    n: 22, year: "JAMB 2018", topic: "Trigonometry",
+    q: "The angle of elevation of the top of a tower is 30° from a point 60 m away. Find the height. [tan 30° = 1/√3]",
+    opts: ["A.  20√3 m", "B.  30√3 m", "C.  20 m", "D.  60√3 m"],
+    ans: "A"
+  },
+  {
+    n: 23, year: "JAMB 2021", topic: "Quadratic Equations",
+    q: "Find the quadratic equation whose roots are 3 and −5.",
+    opts: ["A.  x² + 2x − 15 = 0", "B.  x² − 2x + 15 = 0", "C.  x² + 2x + 15 = 0", "D.  x² − 2x − 15 = 0"],
+    ans: "A"
+  },
+  {
+    n: 24, year: "JAMB 2017", topic: "Standard Form",
+    q: "Express 0.00375 in standard form.",
+    opts: ["A.  3.75 × 10⁻³", "B.  37.5 × 10⁻⁴", "C.  0.375 × 10⁻²", "D.  3.75 × 10⁻²"],
+    ans: "A"
+  },
+  {
+    n: 25, year: "JAMB 2019", topic: "Statistics",
+    q: "Find the median of: 3, 7, 5, 9, 2, 8, 4.",
+    opts: ["A.  4", "B.  5", "C.  6", "D.  7"],
+    ans: "B"
+  },
+  {
+    n: 26, year: "JAMB 2022", topic: "Polynomials",
+    q: "Factorize: 2x² + 7x + 3",
+    opts: ["A.  (2x + 1)(x + 3)", "B.  (2x + 3)(x + 1)", "C.  (x + 3)(2x − 1)", "D.  (x + 1)(2x + 3)"],
+    ans: "A"
+  },
+  {
+    n: 27, year: "JAMB 2020", topic: "Algebra",
+    q: "A rectangle has length (2x + 3) cm and width (x − 1) cm. Find its area when x = 4.",
+    opts: ["A.  33 cm²", "B.  22 cm²", "C.  30 cm²", "D.  44 cm²"],
+    ans: "A"
+  },
+  {
+    n: 28, year: "JAMB 2018", topic: "Logarithms",
+    q: "If log₁₀ 2 = 0.3010, find log₁₀ 50.",
+    opts: ["A.  1.3010", "B.  1.6990", "C.  2.3010", "D.  0.6990"],
+    ans: "B"
+  },
+  {
+    n: 29, year: "JAMB 2016", topic: "Statistics",
+    q: "Find the range of: 12, 7, 19, 4, 23, 15, 8.",
+    opts: ["A.  16", "B.  18", "C.  19", "D.  23"],
+    ans: "C"
+  },
+  {
+    n: 30, year: "JAMB 2023", topic: "Probability",
+    q: "Two fair dice are thrown. Find the probability of getting a sum of 11.",
+    opts: ["A.  1/18", "B.  1/12", "C.  5/36", "D.  1/6"],
+    ans: "A"
+  },
+  {
+    n: 31, year: "JAMB 2017", topic: "Trigonometry",
+    q: "The bearing of B from A is 072°. What is the bearing of A from B?",
+    opts: ["A.  108°", "B.  252°", "C.  288°", "D.  342°"],
+    ans: "B"
+  },
+  {
+    n: 32, year: "JAMB 2021", topic: "Variation",
+    q: "If x varies directly as y² and x = 18 when y = 3, find x when y = 5.",
+    opts: ["A.  40", "B.  50", "C.  45", "D.  60"],
+    ans: "B"
+  },
+  {
+    n: 33, year: "JAMB 2019", topic: "Calculus",
+    q: "Find the minimum value of y = x² − 6x + 11.",
+    opts: ["A.  2", "B.  3", "C.  4", "D.  5"],
+    ans: "A"
+  },
+  {
+    n: 34, year: "JAMB 2018", topic: "Indices",
+    q: "Simplify: (a²b³)/(ab⁴) × (b/a)",
+    opts: ["A.  1", "B.  a/b", "C.  b/a", "D.  a²/b²"],
+    ans: "A"
+  },
+  {
+    n: 35, year: "JAMB 2020", topic: "Geometry",
+    q: "Find the sum of the interior angles of a hexagon.",
+    opts: ["A.  540°", "B.  720°", "C.  900°", "D.  1080°"],
+    ans: "B"
+  },
+  {
+    n: 36, year: "JAMB 2022", topic: "Profit & Loss",
+    q: "A trader bought 50 items for ₦2,000 and sold them at ₦50 each. Find the percentage profit.",
+    opts: ["A.  20%", "B.  25%", "C.  30%", "D.  40%"],
+    ans: "B"
+  },
+  {
+    n: 37, year: "JAMB 2019", topic: "Matrices",
+    q: "Find the inverse of A = [[3, 1], [5, 2]].",
+    opts: ["A.  [[2, −1], [−5, 3]]", "B.  [[2, 1], [5, 3]]", "C.  [[−2, 1], [5, −3]]", "D.  [[3, −1], [−5, 2]]"],
+    ans: "A"
+  },
+  {
+    n: 38, year: "JAMB 2023", topic: "Integration",
+    q: "Evaluate: ∫(5x⁴ − 3x²) dx",
+    opts: ["A.  x⁵ − x³ + c", "B.  20x³ − 6x + c", "C.  x⁵ + x³ + c", "D.  5x⁵ − 3x³ + c"],
+    ans: "A"
+  },
+  {
+    n: 39, year: "JAMB 2021", topic: "Mensuration",
+    q: "The circumference of a circle is 44 cm. Find its radius. [π = 22/7]",
+    opts: ["A.  5 cm", "B.  6 cm", "C.  7 cm", "D.  8 cm"],
+    ans: "C"
+  },
+  {
+    n: 40, year: "JAMB 2018", topic: "Indices",
+    q: "If 5^(2x) = 125, find x.",
+    opts: ["A.  3/2", "B.  2", "C.  3", "D.  5"],
+    ans: "A"
+  }
+];
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+const userAnswers = {};
+const flagged     = new Set();
+let timerSecs     = 30 * 60;
+let timerRunning  = true;
+let timerInterval;
+let submitted     = false;
+
+// ═══════════════════════════════════════════════
+// RENDER ALL 40 QUESTIONS
+// ═══════════════════════════════════════════════
+function render() {
+  const grid = document.getElementById('questionsGrid');
+  grid.innerHTML = '';
+
+  QUESTIONS.forEach((q, i) => {
+    const isAns  = userAnswers[i] !== undefined;
+    const isFlag = flagged.has(i);
+    const letters = ['A', 'B', 'C', 'D'];
+
+    const card = document.createElement('div');
+    card.className = `q-card${isAns ? ' answered' : ''}${isFlag ? ' flagged' : ''}`;
+    card.id = `card-${i}`;
+    card.style.animationDelay = `${i * 0.025}s`;
+
+    const optHTML = q.opts.map((o, oi) => {
+      const ltr   = letters[oi];
+      const isSel = userAnswers[i] === ltr;
+      return `
+        <div class="opt${isSel ? ' sel' : ''}" data-qi="${i}" data-ltr="${ltr}">
+          <span class="opt-badge">${ltr}</span>
+          <span class="opt-text">${o.replace(/^[A-D]\.\s*/, '')}</span>
+        </div>`;
+    }).join('');
+
+    card.innerHTML = `
+      <div class="q-top">
+        <div class="q-top-left">
+          <div class="q-num-bg">${q.n}</div>
+          <div class="q-tags">
+            <span class="q-tag-year">${q.year}</span>
+            <span class="q-tag-topic">${q.topic}</span>
+          </div>
+        </div>
+        <button class="flag-btn${isFlag ? ' on' : ''}" data-fi="${i}" title="Flag this question">⚑</button>
+      </div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-options">${optHTML}</div>`;
+
+    grid.appendChild(card);
+  });
+
+  attachEvents();
+  buildDots();
+  updateStats();
+}
+
+// ═══════════════════════════════════════════════
+// EVENTS
+// ═══════════════════════════════════════════════
+function attachEvents() {
+  document.querySelectorAll('.opt').forEach(el => {
+    el.addEventListener('click', () => {
+      if (submitted) return;
+      const qi  = +el.dataset.qi;
+      const ltr = el.dataset.ltr;
+      userAnswers[qi] = ltr;
+      updateCard(qi);
+      updateStats();
+    });
+  });
+
+  document.querySelectorAll('.flag-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const fi = +btn.dataset.fi;
+      flagged.has(fi) ? flagged.delete(fi) : flagged.add(fi);
+      updateCard(fi);
+      updateStats();
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════
+// UPDATE A SINGLE CARD
+// ═══════════════════════════════════════════════
+function updateCard(qi) {
+  const card = document.getElementById(`card-${qi}`);
+  if (!card) return;
+  const isAns  = userAnswers[qi] !== undefined;
+  const isFlag = flagged.has(qi);
+
+  card.className = `q-card${isAns ? ' answered' : ''}${isFlag ? ' flagged' : ''}`;
+
+  // Number badge colour
+  const badge = card.querySelector('.q-num-bg');
+  if (badge) {
+    if (isAns)        badge.style.background = 'var(--green)';
+    else if (isFlag)  badge.style.background = 'var(--orange)';
+    else              badge.style.background = 'var(--blue)';
+  }
+
+  // Option highlight
+  card.querySelectorAll('.opt').forEach(o => {
+    o.classList.toggle('sel', userAnswers[qi] === o.dataset.ltr);
+  });
+
+  // Flag button
+  const fb = card.querySelector('.flag-btn');
+  if (fb) fb.classList.toggle('on', isFlag);
+
+  // Number dot
+  const dot = document.querySelector(`.qnum-dot[data-di="${qi}"]`);
+  if (dot) {
+    dot.className = 'qnum-dot';
+    if (isAns)       dot.classList.add('done');
+    else if (isFlag) dot.classList.add('flagd');
+  }
+}
+
+// ═══════════════════════════════════════════════
+// BUILD QUESTION NUMBER DOTS
+// ═══════════════════════════════════════════════
+function buildDots() {
+  const wrap = document.getElementById('qnumDots');
+  wrap.innerHTML = '';
+  QUESTIONS.forEach((q, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'qnum-dot';
+    dot.textContent = i + 1;
+    dot.dataset.di  = i;
+    if (userAnswers[i] !== undefined) dot.classList.add('done');
+    else if (flagged.has(i))          dot.classList.add('flagd');
+    dot.addEventListener('click', () => {
+      document.getElementById(`card-${i}`)
+        ?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    wrap.appendChild(dot);
+  });
+}
+
+// ═══════════════════════════════════════════════
+// UPDATE STATS BAR
+// ═══════════════════════════════════════════════
+function updateStats() {
+  const answered = Object.keys(userAnswers).length;
+  const nFlagged = flagged.size;
+  const left     = 40 - answered;
+  const pct      = Math.round(answered / 40 * 100);
+
+  document.getElementById('statAnswered').textContent = answered;
+  document.getElementById('statFlagged').textContent  = nFlagged;
+  document.getElementById('statLeft').textContent     = left;
+  document.getElementById('progFill').style.width     = pct + '%';
+  document.getElementById('progLabel').textContent    = pct + '%';
+  document.getElementById('scoreNum').textContent     = answered;
+  document.getElementById('scoreNum2').textContent    = answered;
+
+  // Sync all dots
+  document.querySelectorAll('.qnum-dot').forEach((dot, i) => {
+    dot.className = 'qnum-dot';
+    if (userAnswers[i] !== undefined) dot.classList.add('done');
+    else if (flagged.has(i))          dot.classList.add('flagd');
+  });
+}
+
+// ═══════════════════════════════════════════════
+// TIMER
+// ═══════════════════════════════════════════════
+function startTimer() {
+  timerInterval = setInterval(() => {
+    if (!timerRunning) return;
+    timerSecs--;
+    const m = String(Math.floor(timerSecs / 60)).padStart(2, '0');
+    const s = String(timerSecs % 60).padStart(2, '0');
+    document.getElementById('timerVal').textContent = `${m}:${s}`;
+    if (timerSecs < 5 * 60) document.getElementById('timerWidget').classList.add('warn');
+    if (timerSecs <= 0) { clearInterval(timerInterval); showResults(); }
+  }, 1000);
+}
+
+document.getElementById('pauseBtn').addEventListener('click', function () {
+  timerRunning = !timerRunning;
+  this.textContent = timerRunning ? '⏸ Pause' : '▶ Resume';
+});
+
+// ═══════════════════════════════════════════════
+// SUBMIT MODAL
+// ═══════════════════════════════════════════════
+function openSubmit() {
+  document.getElementById('modalAns').textContent = Object.keys(userAnswers).length;
+  document.getElementById('submitOverlay').classList.add('show');
+}
+function closeSubmit() {
+  document.getElementById('submitOverlay').classList.remove('show');
+}
+
+// ═══════════════════════════════════════════════
+// RESULTS
+// ═══════════════════════════════════════════════
+function showResults() {
+  clearInterval(timerInterval);
+  submitted = true;
+  document.getElementById('submitOverlay').classList.remove('show');
+
+  const answered = Object.keys(userAnswers).length;
+  let correct = 0;
+  QUESTIONS.forEach((q, i) => {
+    if (userAnswers[i] === q.ans) correct++;
+  });
+
+  document.getElementById('resScore').textContent = correct;
+  document.getElementById('resPct').textContent   = Math.round(correct / 40 * 100) + '%';
+  document.getElementById('resAns').textContent   = answered;
+  document.getElementById('resSkip').textContent  = 40 - answered;
+  document.getElementById('resultsOverlay').classList.add('show');
+}
+
+function closeResults() {
+  document.getElementById('resultsOverlay').classList.remove('show');
+}
+
+// ═══════════════════════════════════════════════
+// REVIEW — show correct / wrong on every card
+// ═══════════════════════════════════════════════
+function reviewAnswers() {
+  closeResults();
+
+  QUESTIONS.forEach((q, i) => {
+    const card = document.getElementById(`card-${i}`);
+    if (!card) return;
+    card.classList.add('reviewed');
+
+    const letters = ['A', 'B', 'C', 'D'];
+    card.querySelectorAll('.opt').forEach((opt, oi) => {
+      const ltr = letters[oi];
+      opt.classList.remove('sel', 'correct', 'wrong');
+      if (ltr === q.ans) {
+        opt.classList.add('correct');
+      } else if (userAnswers[i] === ltr && ltr !== q.ans) {
+        opt.classList.add('wrong');
+      }
+    });
+
+    // Append result badge if not already there
+    if (!card.querySelector('.review-badge')) {
+      const userPicked = userAnswers[i];
+      const isCorrect  = userPicked === q.ans;
+      const badge      = document.createElement('div');
+      if (userPicked) {
+        badge.className = `review-badge ${isCorrect ? 'correct-b' : 'wrong-b'}`;
+        badge.textContent = isCorrect ? '✓ Correct' : `✗ Wrong — Answer: ${q.ans}`;
+      } else {
+        badge.className = 'review-badge wrong-b';
+        badge.textContent = `— Not answered — Answer: ${q.ans}`;
+      }
+      card.appendChild(badge);
+    }
+  });
+
+  // Scroll to top of questions
+  document.getElementById('questionsGrid')
+    ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+render();
+startTimer();
+</script>
+</body>
+</html>

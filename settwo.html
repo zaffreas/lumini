@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Lumini – JAMB Mathematics · Set 2</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --blue:       #1A6BF5;
+  --blue-dark:  #1252C8;
+  --blue-mid:   #2563EB;
+  --blue-light: #EEF4FF;
+  --blue-pale:  #F5F8FF;
+  --green:      #16A34A;
+  --green-bg:   #F0FDF4;
+  --green-bd:   #86EFAC;
+  --purple:     #7C3AED;
+  --purple-bg:  #F5F3FF;
+  --orange:     #D97706;
+  --orange-bg:  #FFFBEB;
+  --orange-bd:  #FDE68A;
+  --red:        #DC2626;
+  --red-bg:     #FEF2F2;
+  --sidebar-w:  224px;
+  --topbar-h:   62px;
+  --white:      #FFFFFF;
+  --bg:         #F4F7FE;
+  --text:       #0F172A;
+  --text-2:     #334155;
+  --muted:      #64748B;
+  --border:     #E2E8F0;
+  --radius-sm:  8px;
+  --radius:     14px;
+  --radius-lg:  18px;
+  --shadow-sm:  0 1px 4px rgba(15,23,42,.06);
+  --shadow:     0 2px 12px rgba(26,107,245,.09);
+  --shadow-md:  0 4px 20px rgba(26,107,245,.13);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:var(--bg);color:var(--text);display:flex;min-height:100vh;font-size:14px;-webkit-font-smoothing:antialiased;}
+
+/* ═══ SIDEBAR ═══ */
+.sidebar{width:var(--sidebar-w);min-height:100vh;background:var(--white);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:20;}
+.sidebar-logo{display:flex;align-items:center;gap:10px;padding:22px 20px 20px;border-bottom:1px solid var(--border);}
+.logo-mark{width:34px;height:34px;border-radius:10px;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:17px;letter-spacing:-1px;box-shadow:0 4px 10px rgba(26,107,245,.35);}
+.logo-name{font-size:19px;font-weight:800;color:var(--text);letter-spacing:-0.5px;}
+.sidebar-nav{flex:1;padding:12px 0;overflow-y:auto;}
+.nav-section-label{font-size:10px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;padding:12px 20px 6px;}
+.nav-item{display:flex;align-items:center;gap:11px;padding:9px 20px;margin:1px 8px;border-radius:var(--radius-sm);cursor:pointer;color:var(--muted);font-weight:500;font-size:13.5px;transition:all .16s ease;position:relative;}
+.nav-item svg{flex-shrink:0;width:16px;height:16px;}
+.nav-item:hover{color:var(--blue);background:var(--blue-light);}
+.nav-item.active{color:var(--blue);background:var(--blue-light);font-weight:700;}
+.nav-item.active::before{content:'';position:absolute;left:-8px;top:50%;transform:translateY(-50%);width:3px;height:20px;background:var(--blue);border-radius:0 3px 3px 0;}
+.nav-badge{margin-left:auto;background:var(--blue);color:#fff;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px;}
+.sidebar-footer{padding:14px 16px;border-top:1px solid var(--border);}
+.user-card{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:var(--radius);background:var(--blue-pale);cursor:pointer;transition:background .16s;}
+.user-card:hover{background:var(--blue-light);}
+.user-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#1A6BF5,#7C3AED);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px;flex-shrink:0;}
+.user-name{font-weight:700;font-size:12.5px;color:var(--text);}
+.user-role{font-size:11px;color:var(--muted);}
+.user-streak{margin-left:auto;display:flex;flex-direction:column;align-items:center;}
+.streak-val{font-weight:800;color:var(--orange);font-size:13px;}
+.streak-lbl{font-size:9px;color:var(--muted);font-weight:600;}
+
+/* ═══ MAIN ═══ */
+.main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh;}
+
+/* ═══ TOPBAR ═══ */
+.topbar{height:var(--topbar-h);background:var(--white);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:15;gap:16px;}
+.topbar-left{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);}
+.breadcrumb-sep{color:var(--border);font-size:16px;line-height:1;}
+.breadcrumb-current{color:var(--text);font-weight:700;}
+.chip{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-size:11.5px;font-weight:700;}
+.chip-blue{background:var(--blue-light);color:var(--blue);}
+.chip-purple{background:var(--purple-bg);color:var(--purple);}
+.chip-green{background:var(--green-bg);color:var(--green);}
+.topbar-right{display:flex;align-items:center;gap:12px;}
+.timer-widget{display:flex;align-items:center;gap:10px;padding:7px 16px;border-radius:var(--radius);background:var(--orange-bg);border:1.5px solid var(--orange-bd);}
+.timer-icon{font-size:18px;}
+.timer-inner{display:flex;flex-direction:column;}
+.timer-label{font-size:10px;color:var(--muted);font-weight:600;line-height:1;}
+.timer-val{font-size:20px;font-weight:800;color:#B45309;letter-spacing:1px;font-variant-numeric:tabular-nums;line-height:1.2;}
+.timer-widget.warn{background:var(--red-bg);border-color:#FECACA;}
+.timer-widget.warn .timer-val{color:var(--red);}
+.score-pill{display:flex;align-items:center;gap:7px;padding:7px 16px;border-radius:var(--radius);background:var(--green-bg);border:1.5px solid var(--green-bd);font-weight:700;font-size:13px;color:var(--green);white-space:nowrap;}
+.score-pill span{font-size:11px;color:var(--muted);font-weight:500;}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:8px 18px;border-radius:var(--radius-sm);border:none;font-family:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:all .18s;white-space:nowrap;}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 2px 8px rgba(26,107,245,.3);}
+.btn-primary:hover{background:var(--blue-dark);transform:translateY(-1px);box-shadow:0 4px 14px rgba(26,107,245,.4);}
+.btn-ghost{background:transparent;color:var(--muted);border:1.5px solid var(--border);}
+.btn-ghost:hover{background:var(--blue-pale);color:var(--blue);border-color:var(--blue);}
+.btn-danger{background:var(--red);color:#fff;box-shadow:0 2px 8px rgba(220,38,38,.25);}
+.btn-danger:hover{background:#B91C1C;}
+
+/* ═══ CONTENT ═══ */
+.content-wrap{flex:1;padding:24px 28px;display:flex;flex-direction:column;gap:20px;}
+
+/* ═══ HERO BANNER ═══ */
+.hero-banner{background:linear-gradient(120deg,var(--blue) 0%,#1a46a3 60%,#60A5FA 100%);border-radius:var(--radius-lg);padding:20px 28px;display:flex;align-items:center;justify-content:space-between;gap:20px;position:relative;overflow:hidden;}
+.hero-banner::before{content:'';position:absolute;top:-30px;right:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.08);pointer-events:none;}
+.hero-banner::after{content:'';position:absolute;bottom:-40px;right:120px;width:120px;height:120px;border-radius:50%;background:rgba(255,255,255,.05);pointer-events:none;}
+.hero-text{position:relative;z-index:1;}
+.hero-title{font-size:17px;font-weight:800;color:#fff;margin-bottom:4px;}
+.hero-sub{font-size:13px;color:rgba(255,255,255,.8);}
+.hero-stats{display:flex;gap:16px;position:relative;z-index:1;}
+.stat-pill{background:rgba(255,255,255,.15);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.25);border-radius:var(--radius);padding:10px 18px;text-align:center;min-width:80px;}
+.stat-val{font-size:22px;font-weight:800;color:#fff;line-height:1;}
+.stat-lbl{font-size:10px;color:rgba(255,255,255,.75);font-weight:600;margin-top:3px;}
+.prog-wrap{display:flex;align-items:center;gap:14px;position:relative;z-index:1;}
+.prog-bar{width:200px;height:7px;background:rgba(255,255,255,.25);border-radius:999px;overflow:hidden;}
+.prog-fill{height:100%;background:#fff;border-radius:999px;transition:width .5s ease;}
+.prog-label{font-size:12px;font-weight:700;color:#fff;white-space:nowrap;}
+
+/* ═══ QUESTION NUMBER STRIP ═══ */
+.qnum-strip{background:var(--white);border-radius:var(--radius);padding:14px 18px;border:1px solid var(--border);box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:12px;}
+.qnum-label{font-size:11px;font-weight:700;color:var(--muted);white-space:nowrap;text-transform:uppercase;letter-spacing:0.5px;}
+.qnum-dots{display:flex;flex-wrap:wrap;gap:5px;flex:1;}
+.qnum-dot{width:30px;height:30px;border-radius:7px;border:1.5px solid var(--border);background:var(--white);font-size:11px;font-weight:700;color:var(--muted);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .14s;user-select:none;}
+.qnum-dot:hover{border-color:var(--blue);color:var(--blue);background:var(--blue-light);}
+.qnum-dot.done{background:var(--blue);color:#fff;border-color:var(--blue);}
+.qnum-dot.flagd{background:var(--orange-bg);color:var(--orange);border-color:#FCD34D;}
+
+/* ═══ QUESTIONS GRID ═══ */
+.questions-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start;}
+
+/* ═══ QUESTION CARD ═══ */
+.q-card{background:var(--white);border-radius:var(--radius);border:1.5px solid var(--border);padding:18px 20px;display:flex;flex-direction:column;gap:13px;box-shadow:var(--shadow-sm);transition:border-color .18s,box-shadow .18s,transform .18s;animation:slideUp .35s ease both;}
+.q-card:hover{border-color:#BFDBFE;box-shadow:var(--shadow-md);transform:translateY(-1px);}
+.q-card.answered{border-color:var(--green-bd);}
+.q-card.flagged{border-color:#FCD34D;}
+.q-card.answered .q-num-bg{background:var(--green) !important;}
+.q-card.flagged:not(.answered) .q-num-bg{background:var(--orange) !important;}
+.q-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.q-top-left{display:flex;align-items:center;gap:10px;}
+.q-num-bg{min-width:30px;height:30px;border-radius:9px;background:var(--blue);color:#fff;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .25s;}
+.q-tags{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.q-tag-year{font-size:10px;font-weight:700;color:var(--purple);background:var(--purple-bg);padding:2px 9px;border-radius:20px;}
+.q-tag-topic{font-size:10px;font-weight:600;color:var(--muted);background:#F1F5F9;padding:2px 9px;border-radius:20px;}
+.flag-btn{background:none;border:none;cursor:pointer;width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;color:#CBD5E1;transition:all .15s;flex-shrink:0;}
+.flag-btn:hover{background:var(--orange-bg);color:var(--orange);}
+.flag-btn.on{background:var(--orange-bg);color:var(--orange);}
+.q-text{font-size:13.5px;font-weight:500;line-height:1.65;color:var(--text-2);border-left:3px solid var(--blue-light);padding-left:12px;}
+.q-options{display:flex;flex-direction:column;gap:7px;}
+.opt{display:flex;align-items:center;gap:10px;padding:9px 13px;border-radius:9px;border:1.5px solid var(--border);cursor:pointer;transition:all .15s;background:var(--white);user-select:none;}
+.opt:hover{border-color:var(--blue);background:var(--blue-pale);}
+.opt.sel{border-color:var(--blue);background:var(--blue-light);}
+.opt.correct{border-color:var(--green);background:var(--green-bg);pointer-events:none;}
+.opt.wrong{border-color:var(--red);background:var(--red-bg);pointer-events:none;}
+.opt-badge{width:24px;height:24px;border-radius:6px;background:#F1F5F9;color:var(--muted);font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .15s;}
+.opt.sel .opt-badge{background:var(--blue);color:#fff;}
+.opt.correct .opt-badge{background:var(--green);color:#fff;}
+.opt.wrong .opt-badge{background:var(--red);color:#fff;}
+.opt-text{font-size:13px;color:var(--text-2);line-height:1.45;}
+
+/* ═══ BOTTOM BAR ═══ */
+.bottom-bar{position:sticky;bottom:0;background:rgba(255,255,255,.97);backdrop-filter:blur(10px);border-top:1px solid var(--border);padding:12px 28px;display:flex;align-items:center;justify-content:space-between;gap:16px;z-index:15;box-shadow:0 -2px 16px rgba(15,23,42,.07);}
+.bottom-left{display:flex;align-items:center;gap:10px;}
+.bottom-right{display:flex;align-items:center;gap:10px;}
+.scroll-hint{font-size:12px;color:var(--muted);font-weight:500;}
+.scroll-hint strong{color:var(--blue);}
+
+/* ═══ MODALS ═══ */
+.overlay{position:fixed;inset:0;background:rgba(15,23,42,.5);backdrop-filter:blur(4px);z-index:50;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .25s;}
+.overlay.show{opacity:1;pointer-events:all;}
+.modal{background:var(--white);border-radius:20px;padding:32px;max-width:440px;width:90%;box-shadow:0 24px 60px rgba(15,23,42,.22);transform:translateY(16px) scale(.97);transition:transform .25s;}
+.overlay.show .modal{transform:translateY(0) scale(1);}
+.modal-title{font-size:20px;font-weight:800;margin-bottom:8px;}
+.modal-body{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:24px;}
+.modal-actions{display:flex;gap:10px;justify-content:flex-end;}
+.result-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;}
+.res-card{background:var(--bg);border-radius:12px;padding:16px;text-align:center;}
+.res-val{font-size:28px;font-weight:800;line-height:1;}
+.res-lbl{font-size:11px;color:var(--muted);font-weight:600;margin-top:4px;}
+.res-card.blue .res-val{color:var(--blue);}
+.res-card.green .res-val{color:var(--green);}
+.res-card.orange .res-val{color:var(--orange);}
+.res-card.red .res-val{color:var(--red);}
+.review-badge{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:4px;}
+.review-badge.correct-b{background:var(--green-bg);color:var(--green);}
+.review-badge.wrong-b{background:var(--red-bg);color:var(--red);}
+
+@keyframes slideUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ SIDEBAR ═══════════ -->
+<aside class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-mark">L</div>
+    <div class="logo-name">Lumini</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Main</div>
+    <div class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      Dashboard
+    </div>
+    <div class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      Lessons
+    </div>
+    <div class="nav-item active">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      Practice Questions
+      <span class="nav-badge">40</span>
+    </div>
+    <div class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      Challenges
+    </div>
+    <div class="nav-section-label">Track</div>
+    <div class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+      Progress
+    </div>
+    <div class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      Leaderboard
+    </div>
+    <div class="nav-item">
+      <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+      Schedule
+    </div>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="user-card">
+      <div class="user-avatar">AM</div>
+      <div>
+        <div class="user-name">Aisha M</div>
+        <div class="user-role">Member · Luminery</div>
+      </div>
+      <div class="user-streak">
+        <div class="streak-val">🔥7</div>
+        <div class="streak-lbl">Day Streak</div>
+      </div>
+    </div>
+  </div>
+</aside>
+
+<!-- ═══════════ MAIN ═══════════ -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="topbar-left">
+      <div class="breadcrumb">
+        <span>Practice</span>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">JAMB Mathematics — Set 2</span>
+      </div>
+      <span class="chip chip-blue">Mathematics</span>
+      <span class="chip chip-purple">2023 Syllabus</span>
+      <span class="chip chip-green">40 Questions</span>
+    </div>
+    <div class="topbar-right">
+      <div class="timer-widget" id="timerWidget">
+        <span class="timer-icon">⏱</span>
+        <div class="timer-inner">
+          <span class="timer-label">TIME LEFT</span>
+          <span class="timer-val" id="timerVal">30:00</span>
+        </div>
+      </div>
+      <div class="score-pill">
+        ✅ <strong id="scoreNum">0</strong>&nbsp;<span>/ 40 answered</span>
+      </div>
+      <button class="btn btn-ghost" id="pauseBtn">⏸ Pause</button>
+      <button class="btn btn-danger" onclick="openSubmit()">Submit Test</button>
+    </div>
+  </header>
+
+  <!-- SCROLLABLE CONTENT -->
+  <div class="content-wrap">
+
+    <!-- HERO BANNER -->
+    <div class="hero-banner">
+      <div class="hero-text">
+        <div class="hero-title">JAMB Mathematics — Set 2 · Past Questions Practice</div>
+        <div class="hero-sub">Scroll through all 40 questions at your own pace · Answers tracked automatically</div>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-pill"><div class="stat-val" id="statAnswered">0</div><div class="stat-lbl">Answered</div></div>
+        <div class="stat-pill"><div class="stat-val" id="statFlagged">0</div><div class="stat-lbl">Flagged</div></div>
+        <div class="stat-pill"><div class="stat-val" id="statLeft">40</div><div class="stat-lbl">Remaining</div></div>
+      </div>
+      <div class="prog-wrap">
+        <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+        <span class="prog-label" id="progLabel">0%</span>
+      </div>
+    </div>
+
+    <!-- QUESTION NUMBER STRIP -->
+    <div class="qnum-strip">
+      <div class="qnum-label">Jump to Q:</div>
+      <div class="qnum-dots" id="qnumDots"></div>
+    </div>
+
+    <!-- QUESTIONS GRID — 2 COLUMNS -->
+    <div class="questions-grid" id="questionsGrid"></div>
+
+  </div>
+
+  <!-- STICKY BOTTOM BAR -->
+  <div class="bottom-bar">
+    <div class="bottom-left">
+      <span class="scroll-hint">↕ Scroll to view all <strong>40 questions</strong> · All answers auto-saved</span>
+    </div>
+    <div class="bottom-right">
+      <div class="score-pill">✅ <strong id="scoreNum2">0</strong> <span>/ 40</span></div>
+      <button class="btn btn-primary" onclick="openSubmit()">Submit &amp; See Results</button>
+    </div>
+  </div>
+</div>
+
+<!-- SUBMIT MODAL -->
+<div class="overlay" id="submitOverlay">
+  <div class="modal">
+    <div class="modal-title">⚠️ Ready to Submit?</div>
+    <div class="modal-body">You've answered <strong id="modalAns">0</strong> of 40 questions.<br><br>Unanswered questions will score zero. Are you sure you want to submit?</div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeSubmit()">Keep Going</button>
+      <button class="btn btn-danger" onclick="showResults()">Submit Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS MODAL -->
+<div class="overlay" id="resultsOverlay">
+  <div class="modal">
+    <div class="modal-title">🎉 Test Complete!</div>
+    <div class="result-grid">
+      <div class="res-card green"><div class="res-val" id="resScore">0</div><div class="res-lbl">Score / 40</div></div>
+      <div class="res-card blue"><div class="res-val" id="resPct">0%</div><div class="res-lbl">Percentage</div></div>
+      <div class="res-card orange"><div class="res-val" id="resAns">0</div><div class="res-lbl">Answered</div></div>
+      <div class="res-card red"><div class="res-val" id="resSkip">0</div><div class="res-lbl">Skipped</div></div>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-ghost" onclick="closeResults()">Close</button>
+      <button class="btn btn-primary" onclick="reviewAnswers()">Review Answers</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ═══════════════════════════════════════════════════════════════
+//  SET 2 — 40 JAMB Mathematics Questions
+//  All topics scattered exactly as JAMB CBT format
+//  Sections covered: Number & Numeration, Algebra,
+//  Geometry & Trigonometry, Calculus, Statistics & Probability
+// ═══════════════════════════════════════════════════════════════
+const QUESTIONS = [
+  {
+    n:1, year:"JAMB 2019", topic:"Indices",
+    q:"Evaluate: (81)^(3/4) ÷ (27)^(2/3)",
+    opts:["A.  1","B.  3","C.  9","D.  27"],
+    ans:"B"
+  },
+  {
+    n:2, year:"JAMB 2022", topic:"Coordinate Geometry",
+    q:"Find the distance between the points (−3, 2) and (5, −4).",
+    opts:["A.  8","B.  10","C.  √48","D.  √52"],
+    ans:"B"
+  },
+  {
+    n:3, year:"JAMB 2020", topic:"Statistics",
+    q:"The scores of 8 students in a test are: 5, 8, 6, 9, 7, 5, 6, 8. Find the mode.",
+    opts:["A.  5 and 8","B.  5 and 6","C.  6 and 8","D.  5, 6 and 8"],
+    ans:"C"
+  },
+  {
+    n:4, year:"JAMB 2018", topic:"Algebra",
+    q:"If (x − 3) is a factor of 2x³ − 5x² − x + 6, find the other factors.",
+    opts:["A.  (2x − 1)(x + 2)","B.  (2x + 1)(x − 2)","C.  (2x − 3)(x + 1)","D.  (2x + 3)(x − 1)"],
+    ans:"B"
+  },
+  {
+    n:5, year:"JAMB 2021", topic:"Mensuration",
+    q:"A sphere has a radius of 6 cm. Find its volume. [π = 22/7]",
+    opts:["A.  792 cm³","B.  905.14 cm³","C.  1130.4 cm³","D.  4571.4 cm³"],
+    ans:"B"
+  },
+  {
+    n:6, year:"JAMB 2017", topic:"Logarithms",
+    q:"Given that log₁₀ 2 = 0.3010 and log₁₀ 3 = 0.4771, find log₁₀ 72.",
+    opts:["A.  1.6532","B.  1.7551","C.  1.8573","D.  1.9542"],
+    ans:"C"
+  },
+  {
+    n:7, year:"JAMB 2023", topic:"Differentiation",
+    q:"If y = x³ − 3x² + 4, find the value of x at which the function has a maximum.",
+    opts:["A.  x = 0","B.  x = 1","C.  x = 2","D.  x = 3"],
+    ans:"A"
+  },
+  {
+    n:8, year:"JAMB 2019", topic:"Probability",
+    q:"A number is chosen at random from the integers 1 to 50. What is the probability that it is divisible by both 3 and 5?",
+    opts:["A.  1/10","B.  3/25","C.  3/50","D.  2/25"],
+    ans:"A"
+  },
+  {
+    n:9, year:"JAMB 2016", topic:"Number Bases",
+    q:"Find the value of x if 23x = 1710.",
+    opts:["A.  4","B.  5","C.  6","D.  8"],
+    ans:"D"
+  },
+  {
+    n:10, year:"JAMB 2020", topic:"Trigonometry",
+    q:"In △ABC, AB = 5 cm, BC = 12 cm and angle B = 90°. Find tan A.",
+    opts:["A.  5/13","B.  12/5","C.  5/12","D.  13/12"],
+    ans:"B"
+  },
+  {
+    n:11, year:"JAMB 2018", topic:"Surds",
+    q:"Simplify: (2√3 + √5)(2√3 − √5)",
+    opts:["A.  7","B.  11","C.  17","D.  √11"],
+    ans:"A"
+  },
+  {
+    n:12, year:"JAMB 2021", topic:"Progression",
+    q:"The sum of the first 10 terms of a GP with first term 2 and common ratio 3 is:",
+    opts:["A.  29,524","B.  59,048","C.  39,366","D.  19,682"],
+    ans:"B"
+  },
+  {
+    n:13, year:"JAMB 2022", topic:"Integration",
+    q:"Find the area enclosed between the curve y = x² and the line y = 4.",
+    opts:["A.  16/3","B.  32/3","C.  8","D.  16"],
+    ans:"B"
+  },
+  {
+    n:14, year:"JAMB 2017", topic:"Simultaneous Equations",
+    q:"Solve for x and y: 3x + 4y = 10 and x − y = 1.",
+    opts:["A.  x = 2, y = 1","B.  x = 1, y = 2","C.  x = 3, y = 0","D.  x = 0, y = 3"],
+    ans:"A"
+  },
+  {
+    n:15, year:"JAMB 2019", topic:"Sets",
+    q:"In a class of 45 students, 30 offer Mathematics, 20 offer Physics and 15 offer both. How many offer neither?",
+    opts:["A.  5","B.  10","C.  15","D.  20"],
+    ans:"B"
+  },
+  {
+    n:16, year:"JAMB 2020", topic:"Matrices",
+    q:"If A = [[2, 3], [1, 4]], find A⁻¹.",
+    opts:["A.  ⅕[[4,−3],[−1,2]]","B.  ⅕[[4,3],[1,2]]","C.  [[4,−3],[−1,2]]","D.  [[2,−3],[−1,4]]"],
+    ans:"A"
+  },
+  {
+    n:17, year:"JAMB 2023", topic:"Percentages",
+    q:"A student scores 72 out of 90 in a test. What percentage did she score?",
+    opts:["A.  75%","B.  78%","C.  80%","D.  82%"],
+    ans:"C"
+  },
+  {
+    n:18, year:"JAMB 2018", topic:"Coordinate Geometry",
+    q:"Find the equation of the line passing through (3, 1) and (−1, 3).",
+    opts:["A.  x + 2y = 5","B.  2x + y = 7","C.  x − 2y = 1","D.  2x − y = 5"],
+    ans:"A"
+  },
+  {
+    n:19, year:"JAMB 2016", topic:"Permutation",
+    q:"In how many ways can the letters of the word Lagos be arranged?",
+    opts:["A.  24","B.  60","C.  120","D.  720"],
+    ans:"C"
+  },
+  {
+    n:20, year:"JAMB 2021", topic:"Mensuration",
+    q:"The perimeter of a sector with radius 7 cm and angle 120° is:",
+    opts:["A.  14.67 cm","B.  21.67 cm","C.  28.67 cm","D.  35.67 cm"],
+    ans:"C"
+  },
+  {
+    n:21, year:"JAMB 2019", topic:"Quadratic Equations",
+    q:"The roots of the equation 3x² − 5x + k = 0 are equal. Find k.",
+    opts:["A.  25/12","B.  12/25","C.  5/3","D.  3/5"],
+    ans:"A"
+  },
+  {
+    n:22, year:"JAMB 2022", topic:"Differentiation",
+    q:"The distance s metres moved by a particle in time t seconds is given by s = 3t³ − 4t + 2. Find its acceleration at t = 2.",
+    opts:["A.  36 m/s²","B.  30 m/s²","C.  24 m/s²","D.  18 m/s²"],
+    ans:"A"
+  },
+  {
+    n:23, year:"JAMB 2017", topic:"Number Bases",
+    q:"Evaluate: 1101₂ + 101₂",
+    opts:["A.  10010₂","B.  10011₂","C.  10100₂","D.  11010₂"],
+    ans:"A"
+  },
+  {
+    n:24, year:"JAMB 2020", topic:"Variation",
+    q:"P varies jointly as Q² and inversely as R. If P = 18 when Q = 3 and R = 6, find P when Q = 4 and R = 8.",
+    opts:["A.  16","B.  18","C.  24","D.  36"],
+    ans:"C"
+  },
+  {
+    n:25, year:"JAMB 2021", topic:"Statistics",
+    q:"The table below shows the ages of students: Age(yrs): 10, 11, 12, 13. Freq: 3, 5, 7, 5. Calculate the mean age.",
+    opts:["A.  11.4","B.  11.6","C.  11.8","D.  12.0"],
+    ans:"C"
+  },
+  {
+    n:26, year:"JAMB 2018", topic:"Trigonometry",
+    q:"From a point 80 m from the foot of a vertical pole, the angle of elevation of the top is 30°. Find the height of the pole. [tan 30° = 1/√3]",
+    opts:["A.  80/√3 m","B.  80√3 m","C.  40√3 m","D.  40/√3 m"],
+    ans:"A"
+  },
+  {
+    n:27, year:"JAMB 2023", topic:"Polynomials",
+    q:"Divide 6x³ − 13x² + 4x + 3 by (3x − 1).",
+    opts:["A.  2x² − 4x − 3","B.  2x² − 4x + 3","C.  2x² + 4x − 3","D.  2x² + 4x + 3"],
+    ans:"C"
+  },
+  {
+    n:28, year:"JAMB 2019", topic:"Mensuration",
+    q:"A cylindrical tank of diameter 2 m is filled with water to a depth of 5 m. Find the volume of water. [π = 22/7]",
+    opts:["A.  15.71 m³","B.  31.43 m³","C.  62.86 m³","D.  125.71 m³"],
+    ans:"A"
+  },
+  {
+    n:29, year:"JAMB 2020", topic:"Indices",
+    q:"Simplify: (16^(3/4) × 8^(−2/3)) / 4^(1/2)",
+    opts:["A.  1","B.  2","C.  4","D.  8"],
+    ans:"A"
+  },
+  {
+    n:30, year:"JAMB 2022", topic:"Probability",
+    q:"Two cards are drawn without replacement from a pack of 52 cards. Find the probability that both are aces.",
+    opts:["A.  1/221","B.  1/169","C.  1/13","D.  4/52"],
+    ans:"A"
+  },
+  {
+    n:31, year:"JAMB 2017", topic:"Geometry",
+    q:"The angle subtended by an arc at the centre of a circle is 140°. What angle does the arc subtend at any point on the remaining circumference?",
+    opts:["A.  70°","B.  110°","C.  140°","D.  280°"],
+    ans:"B"
+  },
+  {
+    n:32, year:"JAMB 2021", topic:"Algebra",
+    q:"Find the value of k for which the expression kx² + 4x + 1 is a perfect square.",
+    opts:["A.  2","B.  4","C.  8","D.  16"],
+    ans:"B"
+  },
+  {
+    n:33, year:"JAMB 2018", topic:"Integration",
+    q:"Evaluate: ∫₀³ (2x − 1) dx",
+    opts:["A.  3","B.  6","C.  9","D.  12"],
+    ans:"B"
+  },
+  {
+    n:34, year:"JAMB 2019", topic:"Standard Form",
+    q:"Express 0.000562 in standard form correct to 3 significant figures.",
+    opts:["A.  5.62 × 10⁻⁴","B.  5.62 × 10⁻³","C.  5.6 × 10⁻⁴","D.  0.562 × 10⁻³"],
+    ans:"A"
+  },
+  {
+    n:35, year:"JAMB 2023", topic:"Geometry",
+    q:"ABCD is a cyclic quadrilateral. If angle A = 75° and angle C = (2x + 15)°, find x.",
+    opts:["A.  42","B.  45","C.  48","D.  50"],
+    ans:"B"
+  },
+  {
+    n:36, year:"JAMB 2020", topic:"Binary Operations",
+    q:"An operation * is defined on real numbers by a * b = a + b + 2ab. Find the identity element.",
+    opts:["A.  0","B.  1","C.  −1","D.  2"],
+    ans:"A"
+  },
+  {
+    n:37, year:"JAMB 2022", topic:"Progression",
+    q:"The 4th and 9th terms of an AP are 11 and 26 respectively. Find the common difference.",
+    opts:["A.  2","B.  3","C.  4","D.  5"],
+    ans:"B"
+  },
+  {
+    n:38, year:"JAMB 2017", topic:"Mensuration",
+    q:"The total surface area of a closed cylinder with radius 3 cm and height 8 cm is:",
+    opts:["A.  66π cm²","B.  54π cm²","C.  48π cm²","D.  42π cm²"],
+    ans:"A"
+  },
+  {
+    n:39, year:"JAMB 2021", topic:"Statistics",
+    q:"Find the standard deviation of 2, 3, 5, 6, 9.",
+    opts:["A.  2.37","B.  2.45","C.  2.55","D.  2.60"],
+    ans:"C"
+  },
+  {
+    n:40, year:"JAMB 2019", topic:"Inequalities",
+    q:"Find the range of values of x for which (x − 3)(x + 1) < 0.",
+    opts:["A.  −1 < x < 3","B.  x < −1 or x > 3","C.  −3 < x < 1","D.  x < −3 or x > 1"],
+    ans:"A"
+  }
+];
+
+// ═══════════════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════════════
+const userAnswers = {};
+const flagged     = new Set();
+let timerSecs     = 30 * 60;
+let timerRunning  = true;
+let timerInterval;
+let submitted     = false;
+
+// ═══════════════════════════════════════════════
+// RENDER ALL 40 QUESTIONS
+// ═══════════════════════════════════════════════
+function render() {
+  const grid = document.getElementById('questionsGrid');
+  grid.innerHTML = '';
+
+  QUESTIONS.forEach((q, i) => {
+    const isAns  = userAnswers[i] !== undefined;
+    const isFlag = flagged.has(i);
+    const letters = ['A','B','C','D'];
+
+    const card = document.createElement('div');
+    card.className = `q-card${isAns?' answered':''}${isFlag?' flagged':''}`;
+    card.id = `card-${i}`;
+    card.style.animationDelay = `${i * 0.025}s`;
+
+    const optHTML = q.opts.map((o, oi) => {
+      const ltr   = letters[oi];
+      const isSel = userAnswers[i] === ltr;
+      return `
+        <div class="opt${isSel?' sel':''}" data-qi="${i}" data-ltr="${ltr}">
+          <span class="opt-badge">${ltr}</span>
+          <span class="opt-text">${o.replace(/^[A-D]\.\s*/,'')}</span>
+        </div>`;
+    }).join('');
+
+    card.innerHTML = `
+      <div class="q-top">
+        <div class="q-top-left">
+          <div class="q-num-bg">${q.n}</div>
+          <div class="q-tags">
+            <span class="q-tag-year">${q.year}</span>
+            <span class="q-tag-topic">${q.topic}</span>
+          </div>
+        </div>
+        <button class="flag-btn${isFlag?' on':''}" data-fi="${i}" title="Flag this question">⚑</button>
+      </div>
+      <div class="q-text">${q.q}</div>
+      <div class="q-options">${optHTML}</div>`;
+
+    grid.appendChild(card);
+  });
+
+  attachEvents();
+  buildDots();
+  updateStats();
+}
+
+// ═══════════════════════════════════════════════
+// EVENTS
+// ═══════════════════════════════════════════════
+function attachEvents() {
+  document.querySelectorAll('.opt').forEach(el => {
+    el.addEventListener('click', () => {
+      if (submitted) return;
+      const qi  = +el.dataset.qi;
+      const ltr = el.dataset.ltr;
+      userAnswers[qi] = ltr;
+      updateCard(qi);
+      updateStats();
+    });
+  });
+  document.querySelectorAll('.flag-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const fi = +btn.dataset.fi;
+      flagged.has(fi) ? flagged.delete(fi) : flagged.add(fi);
+      updateCard(fi);
+      updateStats();
+    });
+  });
+}
+
+// ═══════════════════════════════════════════════
+// UPDATE A SINGLE CARD
+// ═══════════════════════════════════════════════
+function updateCard(qi) {
+  const card = document.getElementById(`card-${qi}`);
+  if (!card) return;
+  const isAns  = userAnswers[qi] !== undefined;
+  const isFlag = flagged.has(qi);
+  card.className = `q-card${isAns?' answered':''}${isFlag?' flagged':''}`;
+  const badge = card.querySelector('.q-num-bg');
+  if (badge) {
+    if (isAns)       badge.style.background = 'var(--green)';
+    else if (isFlag) badge.style.background = 'var(--orange)';
+    else             badge.style.background = 'var(--blue)';
+  }
+  card.querySelectorAll('.opt').forEach(o => {
+    o.classList.toggle('sel', userAnswers[qi] === o.dataset.ltr);
+  });
+  const fb = card.querySelector('.flag-btn');
+  if (fb) fb.classList.toggle('on', isFlag);
+  const dot = document.querySelector(`.qnum-dot[data-di="${qi}"]`);
+  if (dot) {
+    dot.className = 'qnum-dot';
+    if (isAns)       dot.classList.add('done');
+    else if (isFlag) dot.classList.add('flagd');
+  }
+}
+
+// ═══════════════════════════════════════════════
+// BUILD QUESTION NUMBER DOTS
+// ═══════════════════════════════════════════════
+function buildDots() {
+  const wrap = document.getElementById('qnumDots');
+  wrap.innerHTML = '';
+  QUESTIONS.forEach((q, i) => {
+    const dot = document.createElement('div');
+    dot.className = 'qnum-dot';
+    dot.textContent = i + 1;
+    dot.dataset.di  = i;
+    if (userAnswers[i] !== undefined) dot.classList.add('done');
+    else if (flagged.has(i))          dot.classList.add('flagd');
+    dot.addEventListener('click', () => {
+      document.getElementById(`card-${i}`)
+        ?.scrollIntoView({ behavior:'smooth', block:'center' });
+    });
+    wrap.appendChild(dot);
+  });
+}
+
+// ═══════════════════════════════════════════════
+// UPDATE STATS
+// ═══════════════════════════════════════════════
+function updateStats() {
+  const answered = Object.keys(userAnswers).length;
+  const nFlagged = flagged.size;
+  const left     = 40 - answered;
+  const pct      = Math.round(answered / 40 * 100);
+  document.getElementById('statAnswered').textContent = answered;
+  document.getElementById('statFlagged').textContent  = nFlagged;
+  document.getElementById('statLeft').textContent     = left;
+  document.getElementById('progFill').style.width     = pct + '%';
+  document.getElementById('progLabel').textContent    = pct + '%';
+  document.getElementById('scoreNum').textContent     = answered;
+  document.getElementById('scoreNum2').textContent    = answered;
+  document.querySelectorAll('.qnum-dot').forEach((dot, i) => {
+    dot.className = 'qnum-dot';
+    if (userAnswers[i] !== undefined) dot.classList.add('done');
+    else if (flagged.has(i))          dot.classList.add('flagd');
+  });
+}
+
+// ═══════════════════════════════════════════════
+// TIMER
+// ═══════════════════════════════════════════════
+function startTimer() {
+  timerInterval = setInterval(() => {
+    if (!timerRunning) return;
+    timerSecs--;
+    const m = String(Math.floor(timerSecs / 60)).padStart(2,'0');
+    const s = String(timerSecs % 60).padStart(2,'0');
+    document.getElementById('timerVal').textContent = `${m}:${s}`;
+    if (timerSecs < 5 * 60) document.getElementById('timerWidget').classList.add('warn');
+    if (timerSecs <= 0) { clearInterval(timerInterval); showResults(); }
+  }, 1000);
+}
+document.getElementById('pauseBtn').addEventListener('click', function() {
+  timerRunning = !timerRunning;
+  this.textContent = timerRunning ? '⏸ Pause' : '▶ Resume';
+});
+
+// ═══════════════════════════════════════════════
+// SUBMIT MODAL
+// ═══════════════════════════════════════════════
+function openSubmit() {
+  document.getElementById('modalAns').textContent = Object.keys(userAnswers).length;
+  document.getElementById('submitOverlay').classList.add('show');
+}
+function closeSubmit() {
+  document.getElementById('submitOverlay').classList.remove('show');
+}
+
+// ═══════════════════════════════════════════════
+// RESULTS
+// ═══════════════════════════════════════════════
+function showResults() {
+  clearInterval(timerInterval);
+  submitted = true;
+  document.getElementById('submitOverlay').classList.remove('show');
+  const answered = Object.keys(userAnswers).length;
+  let correct = 0;
+  QUESTIONS.forEach((q, i) => { if (userAnswers[i] === q.ans) correct++; });
+  document.getElementById('resScore').textContent = correct;
+  document.getElementById('resPct').textContent   = Math.round(correct / 40 * 100) + '%';
+  document.getElementById('resAns').textContent   = answered;
+  document.getElementById('resSkip').textContent  = 40 - answered;
+  document.getElementById('resultsOverlay').classList.add('show');
+}
+function closeResults() {
+  document.getElementById('resultsOverlay').classList.remove('show');
+}
+
+// ═══════════════════════════════════════════════
+// REVIEW ANSWERS
+// ═══════════════════════════════════════════════
+function reviewAnswers() {
+  closeResults();
+  QUESTIONS.forEach((q, i) => {
+    const card = document.getElementById(`card-${i}`);
+    if (!card) return;
+    card.classList.add('reviewed');
+    const letters = ['A','B','C','D'];
+    card.querySelectorAll('.opt').forEach((opt, oi) => {
+      const ltr = letters[oi];
+      opt.classList.remove('sel','correct','wrong');
+      if (ltr === q.ans)                              opt.classList.add('correct');
+      else if (userAnswers[i] === ltr && ltr !== q.ans) opt.classList.add('wrong');
+    });
+    if (!card.querySelector('.review-badge')) {
+      const userPicked = userAnswers[i];
+      const isCorrect  = userPicked === q.ans;
+      const badge      = document.createElement('div');
+      if (userPicked) {
+        badge.className   = `review-badge ${isCorrect ? 'correct-b' : 'wrong-b'}`;
+        badge.textContent = isCorrect ? '✓ Correct' : `✗ Wrong — Answer: ${q.ans}`;
+      } else {
+        badge.className   = 'review-badge wrong-b';
+        badge.textContent = `— Not answered — Answer: ${q.ans}`;
+      }
+      card.appendChild(badge);
+    }
+  });
+  document.getElementById('questionsGrid')
+    ?.scrollIntoView({ behavior:'smooth', block:'start' });
+}
+
+// ═══════════════════════════════════════════════
+// INIT
+// ═══════════════════════════════════════════════
+render();
+startTimer();
+</script>
+</body>
+</html>
